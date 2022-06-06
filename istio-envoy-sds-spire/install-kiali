@@ -1,0 +1,4 @@
+#!/bin/bash
+
+kubectl apply -f addons
+kubectl rollout status deployment/kiali -n istio-system
