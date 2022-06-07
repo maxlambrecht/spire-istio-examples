@@ -2,15 +2,15 @@
 
 # Script to create SPIRE registration entry for bookinfo-details service identity
 
-agentpod="$(kubectl get pods --selector=app=spire-agent -n spire -o jsonpath='{.items[0].metadata.name}')"
-mystr=$(kubectl logs $agentpod -n spire -c spire-agent |grep demo-cluster)
-read democluster < <(echo $mystr | ./find-cluster)
-export DEMO_CLUSTER=$democluster
+if [[ -z $1 ]]; then
+    echo "Error: cluster id should be provided as parameter"
+    exit 1;
+fi
 
 kubectl exec -ti spire-server-0 -n spire -c spire-server -- /opt/spire/bin/spire-server entry create \
           -socketPath /run/spire/sockets/server.sock \
           -spiffeID spiffe://example.org/ns/default/sa/bookinfo-details \
-          -parentID spiffe://example.org/spire/agent/k8s_psat/demo-cluster/$DEMO_CLUSTER \
+          -parentID spiffe://example.org/spire/agent/k8s_psat/demo-cluster/$1 \
           -selector k8s:ns:default \
           -selector k8s:sa:bookinfo-details \
           -selector unix:uid:1337 \
