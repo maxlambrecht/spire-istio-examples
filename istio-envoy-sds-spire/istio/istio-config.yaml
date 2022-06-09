@@ -8,8 +8,6 @@ spec:
     trustDomain: example.org
   values:
     global:
-#      hub: localhost:5000
-      tag: 1.14.0-beta.1
       imagePullPolicy: "IfNotPresent"
       imagePullSecrets:
         - secret-registry
