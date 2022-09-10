@@ -9,7 +9,7 @@ through the Envoy SDS API.
 A kubernetes cluster running with [kubectl](https://kind.sigs.k8s.io/) configured.
 (The easiest way to run a kubernetes cluster is [kind](https://kind.sigs.k8s.io/)). 
 
-This demo uses the Istio release `1.14`. This version adds the support for the SPIRE integration through the Envoy SDS API.
+Istio version 1.14 or later. (This demo uses the Istio version `1.15`)
 
 ### Steps
 
@@ -27,7 +27,7 @@ Verify that is working:
 ./istioctl version
 ```
 
-The output should show `1.14.0`.
+The output should show `1.15.0`.
 
 2. Deploy SPIRE to cluster
 
